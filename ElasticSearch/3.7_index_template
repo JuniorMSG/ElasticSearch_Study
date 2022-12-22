@@ -1,0 +1,38 @@
+GET _template/test_*
+PUT _template/test_template1
+{
+  "index_patterns": ["test_*"],
+  "order": 2,
+  "settings":{
+    "number_of_shards": 3,
+    "number_of_replicas": 1
+  },
+  "mappings":{
+    "properties":{
+      "name": {"type": "text"},
+      "age": {"type": "short"},
+      "genger": {"type": "keyword"}
+    }
+  }
+}
+
+PUT /_template/test_template2
+{
+  "index_patterns": ["test_*"],
+  "order": 1,
+  "settings":{
+    "number_of_shards": 3,
+    "number_of_replicas": 1
+  },
+  "mappings":{
+    "properties":{
+      "name": {"type": "text"},
+      "age": {"type": "long"},
+      "genger": {"type": "keyword"}
+    }
+  }
+}
+
+DELETE test_templateindex
+PUT test_templateindex
+GET test_templateindex
